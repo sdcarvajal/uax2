@@ -1,0 +1,19 @@
+steps:
+  # Paso 1: Instalar dependencias (opcional, según el entorno)
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args: ['install']
+
+  # Paso 2: Ejecutar pruebas (opcional, si tu proyecto incluye pruebas)
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args: ['test']
+
+  # Paso 3: Desplegar la aplicación en Google App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'gcloud'
+    args: ['app', 'deploy', '--quiet']
+
+# Opciones de compilación
+options:
+  logging: CLOUD_LOGGING_ONLY  # Los logs se almacenan únicamente en Cloud Logging
